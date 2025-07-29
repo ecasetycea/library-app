@@ -5,6 +5,15 @@
     --header-size: 5rem;
     --footer-size: 3rem;
     --library-size: calc(100vh - var(--header-size) - var(--footer-size));
+
+    --color-main: #2690F5;
+    --color-complementary1: #F5C53D;
+    --color-complementary2: #F58627;
+    --color-background: #fafafa;
+    --color-main-shadow: #4D6275;
+    --color-complementary1-shadow: #756B4D;
+    --color-complementary2-shadow: #75604D;
+    --color-background-shadow: #cfcfcf;
 }
 
 * {
@@ -32,12 +41,12 @@ body {
 
 /* TESTING */
 .library {
-    background-color: darkred;
+    background-color: var(--color-background);
 }
 
 .header,
 .footer {
-    background-color: darkblue;
+    background-color: var(--color-main);
 }
 
 div {
