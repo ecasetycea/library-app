@@ -1,7 +1,7 @@
 window.onload = onLoad;
 
 const library = [];
-
+const libraryContainer = document.querySelector(".library");
 
 function Book(title, author, pages, read) {
     if(!new.target) throw Error("Did not call book constructor with 'new' keyword");
@@ -12,7 +12,61 @@ function Book(title, author, pages, read) {
     this.read = read;
     this.id = crypto.randomUUID();
 }
+//============================================
 
+
+
+// PAGE FUNCTIONS
+function displayBook(book) {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book')
+    bookCard.id = book.id;
+
+
+    // add information and buttons
+    bookCard.appendChild(createInfoContainerElement('title', 'Title:', book.title));
+    bookCard.appendChild(createInfoContainerElement('author', 'Author:', book.author));
+    bookCard.appendChild(createInfoContainerElement('pages', 'Number of pages:', book.pages));
+    
+    const completed = book.read ? 'Yes' : 'No';
+    bookCard.appendChild(createInfoContainerElement('read', 'Completed:', completed));
+
+    bookCard.appendChild(createButtonContainerElement());
+
+    // put into html
+    libraryContainer.appendChild(bookCard);
+}
+function createInfoContainerElement(elementClass, header, text) {
+    const container = document.createElement('div');
+    const headerEl = document.createElement('h4');
+    const textEl = document.createElement('p');
+
+    headerEl.textContent = header;
+    textEl.textContent = text;
+
+    container.classList.add(elementClass);
+    container.appendChild(headerEl);
+    container.appendChild(textEl);
+
+    return container;
+}
+function createButtonContainerElement() {
+    const container = document.createElement('div');
+    const editButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
+
+    container.classList.add('buttons');
+    editButton.classList.add('edit');
+    deleteButton.classList.add('delete');
+
+    editButton.textContent = 'Edit';
+    deleteButton.textContent = 'Delete';
+
+    container.appendChild(editButton);
+    container.appendChild(deleteButton);
+
+    return container;
+}
 
 
 function onLoad() {
@@ -31,6 +85,9 @@ function test() {
     book2 = new Book("dune","aragorn",420,true);
 
     library.push(book, book2);
+
+    displayBook(book);
+    displayBook(book2);
 
     console.log(library);
 }
