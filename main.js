@@ -16,7 +16,14 @@ function Book(title, author, pages, read) {
 
 
 function onLoad() {
-    document.querySelector('#year').innerHTML = new Date().getFullYear();
+    document.querySelector('#year').innerHTML = yearRange();
+}
+
+function yearRange() {
+    const initYear = 2025;
+    const curYear = new Date().getFullYear();
+    if(curYear==initYear) return curYear;
+    return `${initYear}-${curYear}`;
 }
 
 function test() {
