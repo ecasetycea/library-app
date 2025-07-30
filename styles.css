@@ -93,6 +93,11 @@ body {
 .footer a:visited {color: var(--color-complementary1-shadow);}
 .footer a:hover {color: var(--color-complementary1);}
 
+
+
+
+
+
 /* TESTING */
 .library {
     background-color: var(--color-background);
@@ -105,4 +110,13 @@ body {
 
 div {
     border: 1px red solid;
+}
+
+#test {
+    height: 1.5rem;
+    width: 4rem;
+
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
 }
