@@ -7,6 +7,7 @@
     --library-size: calc(100vh - var(--header-size) - var(--footer-size));
 
     --main-gap: 2rem;
+    --small-gap: 1rem;
 
     --book-height: 300px;
     --book-width: 200px;
@@ -25,6 +26,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 /*===========*\
@@ -54,10 +61,6 @@ body {
     background-color: var(--color-main);
 }
 .header button {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;    
-    
     height: 50%;
     width: 10rem;
 
@@ -98,6 +101,40 @@ body {
     gap: var(--main-gap);
 }
 .library .book {
+    background-color: var(--color-complementary1);
+    padding: var(--small-gap);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    border-radius: 1rem;
+}
+.library .book p {
+    margin-left: 1rem;
+}
+.library .book .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.library .book button {
+    width: 45%;
+    height: 2rem;
+
+    background-color: var(--color-complementary2);
+    border: 3px solid var(--color-complementary2);
+    border-radius: 1rem;
+    
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.library .book button:hover {
+    background-color: var(--color-background);
+}
+.library .book button:active {
+    background-color: var(--color-background-shadow);
 }
 
 /*=============*\
@@ -131,11 +168,6 @@ body {
 /* TESTING */
 
 
-
-.book {
-    background-color: darkred;
-    border: 3px orange solid;
-}
 
 #test {
     height: 1.5rem;
