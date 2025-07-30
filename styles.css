@@ -13,7 +13,7 @@
     --color-main-shadow: #4D6275;
     --color-complementary1-shadow: #756B4D;
     --color-complementary2-shadow: #75604D;
-    --color-background-shadow: #cfcfcf;
+    --color-background-shadow: #dfdfdf;
 }
 
 * {
@@ -37,9 +37,44 @@ body {
 
 }
 
-/*======*\
-| FOOTER |
-\*======*/
+/*=============*\
+| HEADER LAYOUT |
+\*=============*/
+.header {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.header button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;    
+    
+    height: 50%;
+    width: 10rem;
+
+    background-color: var(--color-main);
+    border: 3px solid var(--color-background);
+    border-radius: 20px;
+
+    color: var(--color-background);
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.header button:hover {
+    background-color: var(--color-background);
+    color: var(--color-main);
+    cursor: pointer;
+}
+.header button:active {
+    background-color: var(--color-background-shadow);
+    border-color: var(--color-background-shadow);
+}
+
+/*=============*\
+| FOOTER LAYOUT |
+\*=============*/
 .footer {
     display: flex;
     justify-content: center;
