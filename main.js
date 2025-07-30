@@ -17,6 +17,11 @@ function Book(title, author, pages, read) {
 
 
 // PAGE FUNCTIONS
+function displayAllBooks() {
+    libraryContainer.innerHTML = '';
+
+    for (book of library) displayBook(book);
+}
 function displayBook(book) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book')
@@ -85,9 +90,10 @@ function test() {
     book2 = new Book("dune","aragorn",420,true);
 
     library.push(book, book2);
+    library.push(book, book2);
+    library.push(book, book2);
 
-    displayBook(book);
-    displayBook(book2);
+    displayAllBooks();
 
     console.log(library);
 }
