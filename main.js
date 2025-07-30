@@ -14,12 +14,13 @@ function Book(title, author, pages, read) {
 }
 //============================================
 
-
-
-// PAGE FUNCTIONS
-function displayAllBooks() {
+function update() {
     libraryContainer.innerHTML = '';
+    displayAllBooks();
+}
 
+// LIBRARY
+function displayAllBooks() {
     for (book of library) displayBook(book);
 }
 function displayBook(book) {
@@ -61,11 +62,14 @@ function createButtonContainerElement() {
     const deleteButton = document.createElement('button');
 
     container.classList.add('buttons');
-    editButton.classList.add('edit');
-    deleteButton.classList.add('delete');
 
+    editButton.classList.add('edit');
     editButton.textContent = 'Edit';
+    editButton.addEventListener('click', editBook)
+    
+    deleteButton.classList.add('delete');
     deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', deleteBook);
 
     container.appendChild(editButton);
     container.appendChild(deleteButton);
@@ -73,7 +77,35 @@ function createButtonContainerElement() {
     return container;
 }
 
+// EVENT HANDLING
+function addBook(e) {
+    console.log("requested add");
+}
+function editBook(e) {
+    console.log("requested edit");
+}
+function deleteBook(e) {
+    console.log("requested delete");
 
+    const book = e.target.parentElement.parentElement;
+    
+    for (let i=0; i<library.length; i++) {
+        if(library[i].id===book.id) {
+            library.splice(i,1);
+            i--;
+        }
+    }
+
+    update();
+}
+function saveLibrary(e) {
+    console.log("requested save");
+}
+function clearLibrary(e) {
+    console.log("requested clear");
+}
+
+// GENERAL
 function onLoad() {
     document.querySelector('#year').innerHTML = yearRange();
 }
@@ -93,7 +125,7 @@ function test() {
     library.push(book, book2);
     library.push(book, book2);
 
-    displayAllBooks();
+    update();
 
     console.log(library);
 }
