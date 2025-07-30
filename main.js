@@ -14,10 +14,6 @@ function Book(title, author, pages, read) {
 }
 //============================================
 
-function update() {
-    libraryContainer.innerHTML = '';
-    displayAllBooks();
-}
 
 // LIBRARY
 function displayAllBooks() {
@@ -85,8 +81,6 @@ function editBook(e) {
     console.log("requested edit");
 }
 function deleteBook(e) {
-    console.log("requested delete");
-
     const book = e.target.parentElement.parentElement;
     
     for (let i=0; i<library.length; i++) {
@@ -102,12 +96,24 @@ function saveLibrary(e) {
     console.log("requested save");
 }
 function clearLibrary(e) {
-    console.log("requested clear");
+    library.splice(0);
+    update();
+}
+function addListeners() {
+    document.querySelector('#add').addEventListener('click',addBook);
+    document.querySelector('#save').addEventListener('click',saveLibrary);
+    document.querySelector('#clear').addEventListener('click',clearLibrary);
 }
 
 // GENERAL
+function update() {
+    libraryContainer.innerHTML = '';
+    displayAllBooks();
+}
+
 function onLoad() {
     document.querySelector('#year').innerHTML = yearRange();
+    addListeners();
 }
 
 function yearRange() {
