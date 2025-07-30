@@ -6,6 +6,11 @@
     --footer-size: 2.5rem;
     --library-size: calc(100vh - var(--header-size) - var(--footer-size));
 
+    --main-gap: 2rem;
+
+    --book-height: 300px;
+    --book-width: 200px;
+
     --color-main: #2690F5;
     --color-complementary1: #F5C53D;
     --color-complementary2: #F58627;
@@ -45,6 +50,8 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2rem;
+
+    background-color: var(--color-main);
 }
 .header button {
     appearance: none;
@@ -72,6 +79,27 @@ body {
     border-color: var(--color-background-shadow);
 }
 
+/*==============*\
+| LIBRARY LAYOUT |
+\*==============*/
+.library {
+    background-color: var(--color-background);
+
+    width: 100vw;
+    height: var(--library-size);
+    padding: var(--main-gap);
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    display: grid;
+    grid-template-rows: var(--book-height);
+    grid-auto-rows: var(--book-height);
+    grid-template-columns: repeat(auto-fill, minmax(var(--book-width), 1fr));
+    gap: var(--main-gap);
+}
+.library .book {
+}
+
 /*=============*\
 | FOOTER LAYOUT |
 \*=============*/
@@ -79,6 +107,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: var(--color-main);
 
     font-size: 1rem;
     color: var(--color-background);
@@ -99,17 +129,12 @@ body {
 
 
 /* TESTING */
-.library {
-    background-color: var(--color-background);
-}
 
-.header,
-.footer {
-    background-color: var(--color-main);
-}
 
-div {
-    border: 1px red solid;
+
+.book {
+    background-color: darkred;
+    border: 3px orange solid;
 }
 
 #test {
