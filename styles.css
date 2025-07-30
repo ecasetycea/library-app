@@ -3,7 +3,7 @@
     font-size: 16px;
 
     --header-size: 5rem;
-    --footer-size: 3rem;
+    --footer-size: 2.5rem;
     --library-size: calc(100vh - var(--header-size) - var(--footer-size));
 
     --color-main: #2690F5;
@@ -37,7 +37,26 @@ body {
 
 }
 
+/*======*\
+| FOOTER |
+\*======*/
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    font-size: 1rem;
+    color: var(--color-background);
+}
+.footer a {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    color: white;
+}
+.footer a:visited {color: var(--color-complementary1-shadow);}
+.footer a:hover {color: var(--color-complementary1);}
 
 /* TESTING */
 .library {
