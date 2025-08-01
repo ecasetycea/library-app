@@ -4,6 +4,7 @@ const library = [];
 const libraryContainer = document.querySelector(".library");
 const modal = document.querySelector("#modal");
 const modalTitle = document.querySelector("#modal .title");
+const modalFinishEditBtn = document.querySelector("#finishEditBtn");
 
 function Book(title, author, pages, read) {
     if(!new.target) throw Error("Did not call book constructor with 'new' keyword");
@@ -81,11 +82,13 @@ function findBook(bookID) { //Returns reference to a book with ID
 }
 function showAddModal() {
     modalTitle.textContent = `Add Book`;
+    modalFinishEditBtn.textContent = 'Add Book';
     modal.showModal();
 }
 function showEditModal(bookID) {
     const book = findBook(bookID);
     modalTitle.textContent = `Edit Book - ${book.title}`;
+    modalFinishEditBtn.textContent = 'Finish Editing';
     modal.showModal();
 }
 
