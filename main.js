@@ -5,6 +5,11 @@ const libraryContainer = document.querySelector(".library");
 const modal = document.querySelector("#modal");
 const modalTitle = document.querySelector("#modal .modalTitle");
 const modalFinishEditBtn = document.querySelector("#finishEditBtn");
+const modalBookTitle = document.querySelector('#bookTitle');
+const modalBookAuthor = document.querySelector('#bookAuthor');
+const modalBookPages = document.querySelector('#bookPages');
+const modalBookRead = document.querySelector('#bookRead');
+
 
 function Book(title, author, pages, read) {
     if(!new.target) throw Error("Did not call book constructor with 'new' keyword");
@@ -83,6 +88,12 @@ function findBook(bookID) { //Returns reference to a book with ID
 function showAddModal() {
     modalTitle.textContent = `Add Book`;
     modalFinishEditBtn.textContent = 'Add Book';
+
+    modalBookTitle.value = '';
+    modalBookAuthor.value = '';
+    modalBookPages.value = '';
+    modalBookRead.checked = false;
+
     modal.showModal();
 }
 function showEditModal(bookID) {
@@ -93,9 +104,6 @@ function showEditModal(bookID) {
 }
 
 // EVENT HANDLING
-function addBook(e) { //FIX
-    showAddModal();
-}
 function editBook(e) { //FIX
     const book = e.target.parentElement.parentElement;
 
@@ -121,30 +129,42 @@ function clearLibrary(e) {
     update();
 }
 function addListeners() {
-    document.querySelector('#add').addEventListener('click',addBook);
+    document.querySelector('#add').addEventListener('click',showAddModal);
     document.querySelector('#save').addEventListener('click',saveLibrary);
     document.querySelector('#clear').addEventListener('click',clearLibrary);
     modalFinishEditBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        const required = document.querySelector('.requiredWarning');
+        
+        //reset warning for incomplete input
+        required.style = '';
+        
+        if(!isModalValid(modalBookTitle, modalBookAuthor, modalBookPages)) { //handle no input
+            required.style = 'color: red;';
+            return;
+        }
+
         if(modalTitle.textContent[0]==='E') {
             console.log("modal edit book")
         }
         else if(modalTitle.textContent[0]==='A') {
-            console.log("modal add book");
+            addBook(modalBookTitle.value, modalBookAuthor.value, modalBookPages.value, modalBookRead.checked);
+            modal.close();
         }
     });
 }
-function isModalValid() {
-    const title = document.querySelector('#bookTitle');
-    const author = document.querySelector('#bookAuthor');
-    const pages = document.querySelector('#bookPages');
-
+function isModalValid(title, author, pages) {
     if(title.value==='' || author.value==='' || pages.value==='')
         return false;
 
     return true;
 }
 // GENERAL
+function addBook(title, author, pages, read) {
+    book = new Book(title, author, pages, read);
+    library.push(book);
+    update();
+}
 function update() {
     libraryContainer.innerHTML = '';
     displayAllBooks();
