@@ -100,11 +100,17 @@ function showEditModal(bookID) {
     const book = findBook(bookID);
     modalTitle.textContent = `Edit Book - ${book.title}`;
     modalFinishEditBtn.textContent = 'Finish Editing';
+
+    modalBookTitle.value = book.title;
+    modalBookAuthor.value = book.author;
+    modalBookPages.value = book.pages;
+    modalBookRead.checked = book.read;
+
     modal.showModal();
 }
 
 // EVENT HANDLING
-function editBook(e) { //FIX
+function editBook(e) {
     const book = e.target.parentElement.parentElement;
 
     showEditModal(book.id);
@@ -121,7 +127,7 @@ function deleteBook(e) {
 
     update();
 }
-function saveLibrary(e) { //FIX
+function saveLibrary(e) { //TODO
     console.log("requested save");
 }
 function clearLibrary(e) {
@@ -144,6 +150,8 @@ function addListeners() {
             return;
         }
 
+        //Dynamically handle adding new book vs editing
+        //to avoid having two dialogs in html
         if(modalTitle.textContent[0]==='E') {
             console.log("modal edit book")
         }
@@ -187,8 +195,8 @@ function test() {
     book2 = new Book("dune","aragorn",420,true);
 
     library.push(book, book2);
-    library.push(book, book2);
-    library.push(book, book2);
+    //library.push(book, book2);
+    //library.push(book, book2);
 
     update();
 
