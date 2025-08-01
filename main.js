@@ -2,6 +2,7 @@ window.onload = onLoad;
 
 const library = [];
 const libraryContainer = document.querySelector(".library");
+const editModal = document.querySelector(".editModal");
 
 function Book(title, author, pages, read) {
     if(!new.target) throw Error("Did not call book constructor with 'new' keyword");
@@ -72,12 +73,15 @@ function createButtonContainerElement() {
 
     return container;
 }
+function showEditModal(bookID) {
+    editModal.showModal();
+}
 
 // EVENT HANDLING
-function addBook(e) {
+function addBook(e) { //FIX
     console.log("requested add");
 }
-function editBook(e) {
+function editBook(e) { //FIX
     console.log("requested edit");
 }
 function deleteBook(e) {
@@ -92,7 +96,7 @@ function deleteBook(e) {
 
     update();
 }
-function saveLibrary(e) {
+function saveLibrary(e) { //FIX
     console.log("requested save");
 }
 function clearLibrary(e) {

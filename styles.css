@@ -22,6 +22,11 @@
     --color-background-shadow: #dfdfdf;
 }
 
+::backdrop {
+    background-color: var(--color-main-shadow);
+    opacity: 0.35;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -160,14 +165,30 @@ body {
 .footer a:visited {color: var(--color-complementary1-shadow);}
 .footer a:hover {color: var(--color-complementary1);}
 
+/*============*\
+| MODAL LAYOUT |
+\*============*/
+.editModal {
+    height: max(400px, 70vh);
+    width: clamp(300px, 40vw, 500px);
 
+    position: fixed;
+    margin: auto;
+}
 
 
 
 
 /* TESTING */
 
+#modalTest {
+    height: 1.5rem;
+    width: 4rem;
 
+    position: fixed;
+    top: 1.75rem;
+    right: 0.5rem;
+}
 
 #test {
     height: 1.5rem;
