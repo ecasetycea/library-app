@@ -168,7 +168,7 @@ body {
 /*============*\
 | MODAL LAYOUT |
 \*============*/
-.editModal {
+#modal {
     height: max(400px, 70vh);
     width: clamp(300px, 40vw, 500px);
 

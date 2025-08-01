@@ -2,7 +2,8 @@ window.onload = onLoad;
 
 const library = [];
 const libraryContainer = document.querySelector(".library");
-const editModal = document.querySelector(".editModal");
+const modal = document.querySelector("#modal");
+const modalTitle = document.querySelector("#modal .title");
 
 function Book(title, author, pages, read) {
     if(!new.target) throw Error("Did not call book constructor with 'new' keyword");
@@ -20,7 +21,7 @@ function Book(title, author, pages, read) {
 function displayAllBooks() {
     for (book of library) displayBook(book);
 }
-function displayBook(book) {
+function displayBook(book) { //Add book card to library
     const bookCard = document.createElement('div');
     bookCard.classList.add('book')
     bookCard.id = book.id;
@@ -39,7 +40,7 @@ function displayBook(book) {
     // put into html
     libraryContainer.appendChild(bookCard);
 }
-function createInfoContainerElement(elementClass, header, text) {
+function createInfoContainerElement(elementClass, header, text) { // Info for card
     const container = document.createElement('div');
     const headerEl = document.createElement('h4');
     const textEl = document.createElement('p');
@@ -53,7 +54,7 @@ function createInfoContainerElement(elementClass, header, text) {
 
     return container;
 }
-function createButtonContainerElement() {
+function createButtonContainerElement() { //Buttons for card
     const container = document.createElement('div');
     const editButton = document.createElement('button');
     const deleteButton = document.createElement('button');
@@ -73,16 +74,29 @@ function createButtonContainerElement() {
 
     return container;
 }
+function findBook(bookID) { //Returns reference to a book with ID
+    for (let i=0; i<library.length; i++) {
+        if(library[i].id===bookID) return library[i];
+    }
+}
+function showAddModal() {
+    modalTitle.textContent = `Add Book`;
+    modal.showModal();
+}
 function showEditModal(bookID) {
-    editModal.showModal();
+    const book = findBook(bookID);
+    modalTitle.textContent = `Edit Book - ${book.title}`;
+    modal.showModal();
 }
 
 // EVENT HANDLING
 function addBook(e) { //FIX
-    console.log("requested add");
+    showAddModal();
 }
 function editBook(e) { //FIX
-    console.log("requested edit");
+    const book = e.target.parentElement.parentElement;
+
+    showEditModal(book.id);
 }
 function deleteBook(e) {
     const book = e.target.parentElement.parentElement;
