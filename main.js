@@ -9,6 +9,7 @@ const modalBookTitle = document.querySelector('#bookTitle');
 const modalBookAuthor = document.querySelector('#bookAuthor');
 const modalBookPages = document.querySelector('#bookPages');
 const modalBookRead = document.querySelector('#bookRead');
+let modalCurrentBookId = '';
 
 
 function Book(title, author, pages, read) {
@@ -84,8 +85,10 @@ function findBook(bookID) { //Returns reference to a book with ID
     for (let i=0; i<library.length; i++) {
         if(library[i].id===bookID) return library[i];
     }
+    return false;
 }
 function showAddModal() {
+    modalCurrentBookId = '';
     modalTitle.textContent = `Add Book`;
     modalFinishEditBtn.textContent = 'Add Book';
 
@@ -98,6 +101,10 @@ function showAddModal() {
 }
 function showEditModal(bookID) {
     const book = findBook(bookID);
+    
+    if(!book) throw Error(`Cannot find book with id ${bookID} in library array`);
+    modalCurrentBookId = bookID;
+
     modalTitle.textContent = `Edit Book - ${book.title}`;
     modalFinishEditBtn.textContent = 'Finish Editing';
 
@@ -121,7 +128,8 @@ function deleteBook(e) {
     for (let i=0; i<library.length; i++) {
         if(library[i].id===book.id) {
             library.splice(i,1);
-            i--;
+            break;
+            //i--;
         }
     }
 
@@ -153,12 +161,20 @@ function addListeners() {
         //Dynamically handle adding new book vs editing
         //to avoid having two dialogs in html
         if(modalTitle.textContent[0]==='E') {
-            console.log("modal edit book")
+            const book = findBook(modalCurrentBookId);
+
+            if(!book) throw Error("couldnt find book with id");
+
+            book.title = modalBookTitle.value;
+            book.author = modalBookAuthor.value;
+            book.pages = modalBookPages.value;
+            book.read = modalBookRead.checked;
         }
         else if(modalTitle.textContent[0]==='A') {
             addBook(modalBookTitle.value, modalBookAuthor.value, modalBookPages.value, modalBookRead.checked);
-            modal.close();
         }
+        update();
+        modal.close();
     });
 }
 function isModalValid(title, author, pages) {
@@ -171,7 +187,6 @@ function isModalValid(title, author, pages) {
 function addBook(title, author, pages, read) {
     book = new Book(title, author, pages, read);
     library.push(book);
-    update();
 }
 function update() {
     libraryContainer.innerHTML = '';
