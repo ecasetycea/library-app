@@ -3,7 +3,7 @@ window.onload = onLoad;
 const library = [];
 const libraryContainer = document.querySelector(".library");
 const modal = document.querySelector("#modal");
-const modalTitle = document.querySelector("#modal .title");
+const modalTitle = document.querySelector("#modal .modalTitle");
 const modalFinishEditBtn = document.querySelector("#finishEditBtn");
 
 function Book(title, author, pages, read) {
@@ -124,8 +124,26 @@ function addListeners() {
     document.querySelector('#add').addEventListener('click',addBook);
     document.querySelector('#save').addEventListener('click',saveLibrary);
     document.querySelector('#clear').addEventListener('click',clearLibrary);
+    modalFinishEditBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(modalTitle.textContent[0]==='E') {
+            console.log("modal edit book")
+        }
+        else if(modalTitle.textContent[0]==='A') {
+            console.log("modal add book");
+        }
+    });
 }
+function isModalValid() {
+    const title = document.querySelector('#bookTitle');
+    const author = document.querySelector('#bookAuthor');
+    const pages = document.querySelector('#bookPages');
 
+    if(title.value==='' || author.value==='' || pages.value==='')
+        return false;
+
+    return true;
+}
 // GENERAL
 function update() {
     libraryContainer.innerHTML = '';
