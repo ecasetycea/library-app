@@ -204,6 +204,10 @@ function onLoad() {
     addListeners();
 
 
+    //hide save button till implemented
+    document.querySelector('#save').hidden = true;
+
+
 }
 
 function yearRange() {
@@ -211,17 +215,4 @@ function yearRange() {
     const curYear = new Date().getFullYear();
     if(curYear==initYear) return curYear;
     return `${initYear}-${curYear}`;
-}
-
-function test() {
-    book = new Book("hobbit","tolkien",666,false);
-    book2 = new Book("dune","aragorn",420,true);
-
-    library.push(book, book2);
-    //library.push(book, book2);
-    //library.push(book, book2);
-
-    update();
-
-    console.log(library);
 }
