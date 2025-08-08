@@ -141,6 +141,7 @@ function saveLibrary(e) { //TODO
 }
 function clearLibrary(e) {
     library.splice(0);
+    localStorage.removeItem("myLibrary");
     update();
 }
 function addListeners() {
@@ -197,13 +198,20 @@ function addBook(title, author, pages, read) {
 function update() {
     libraryContainer.innerHTML = '';
     displayAllBooks();
+
+    localStorage.myLibrary = JSON.stringify(library);
 }
 
 function onLoad() {
     document.querySelector('#year').innerHTML = yearRange();
     addListeners();
 
-
+    let bookArray = JSON.parse(localStorage.myLibrary);
+    if(Array.isArray(bookArray)) {
+        for(book of bookArray) library.push(book);
+    }
+    update();
+    
     //hide save button till implemented
     document.querySelector('#save').hidden = true;
 }
