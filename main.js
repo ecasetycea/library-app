@@ -5,6 +5,7 @@ const libraryContainer = document.querySelector(".library");
 const modal = document.querySelector("#modal");
 const modalTitle = document.querySelector("#modal .modalTitle");
 const modalFinishEditBtn = document.querySelector("#finishEditBtn");
+const modalCancelEditBtn = document.querySelector("#cancelEditBtn");
 const modalBookTitle = document.querySelector('#bookTitle');
 const modalBookAuthor = document.querySelector('#bookAuthor');
 const modalBookPages = document.querySelector('#bookPages');
@@ -146,6 +147,10 @@ function addListeners() {
     document.querySelector('#add').addEventListener('click',showAddModal);
     document.querySelector('#save').addEventListener('click',saveLibrary);
     document.querySelector('#clear').addEventListener('click',clearLibrary);
+    modalCancelEditBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.close();
+    })
     modalFinishEditBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const required = document.querySelector('.requiredWarning');
@@ -163,19 +168,20 @@ function addListeners() {
         if(modalTitle.textContent[0]==='E') {
             const book = findBook(modalCurrentBookId);
 
-            if(!book) throw Error("couldnt find book with id");
+            if(!book) throw Error("couldn't find book with id");
 
             book.title = modalBookTitle.value;
             book.author = modalBookAuthor.value;
-            book.pages = modalBookPages.value;
+            book.pages = Number(modalBookPages.value);
             book.read = modalBookRead.checked;
         }
         else if(modalTitle.textContent[0]==='A') {
-            addBook(modalBookTitle.value, modalBookAuthor.value, modalBookPages.value, modalBookRead.checked);
+            addBook(modalBookTitle.value, modalBookAuthor.value, Number(modalBookPages.value), modalBookRead.checked);
         }
         update();
         modal.close();
     });
+    modal
 }
 function isModalValid(title, author, pages) {
     if(title.value==='' || author.value==='' || pages.value==='')
@@ -196,6 +202,8 @@ function update() {
 function onLoad() {
     document.querySelector('#year').innerHTML = yearRange();
     addListeners();
+
+
 }
 
 function yearRange() {
