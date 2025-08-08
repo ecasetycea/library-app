@@ -206,8 +206,6 @@ function onLoad() {
 
     //hide save button till implemented
     document.querySelector('#save').hidden = true;
-
-
 }
 
 function yearRange() {
