@@ -128,6 +128,7 @@ body {
 .library .book .bookInfo {
     width: 100%;
     margin-bottom: 0.5rem;
+    padding-right: 6px;
     overflow-y: auto;
 
     display: flex;
@@ -156,7 +157,21 @@ body {
 .library .book button:active {
     background-color: var(--color-background-shadow);
 }
-
+/* SCROLL BARS */
+.library .book .bookInfo::-webkit-scrollbar {
+    background-color: var(--color-complementary2);
+    width: 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px var(--color-complementary2);
+}
+.library .book .bookInfo::-webkit-scrollbar-thumb {
+    background-color: var(--color-complementary1);
+    border-radius: 6px;
+}
+.library .book .bookInfo {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-complementary1) var(--color-complementary2);
+}
 /*=============*\
 | FOOTER LAYOUT |
 \*=============*/
@@ -276,28 +291,4 @@ body {
 }
 #modal label {
     font-size: 1rem;
-}
-
-
-
-
-
-/* TESTING */
-
-#modalTest {
-    height: 1.5rem;
-    width: 4rem;
-
-    position: fixed;
-    top: 1.75rem;
-    right: 0.5rem;
-}
-
-#test {
-    height: 1.5rem;
-    width: 4rem;
-
-    position: fixed;
-    bottom: 0.5rem;
-    right: 0.5rem;
 }
