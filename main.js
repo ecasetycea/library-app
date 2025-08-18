@@ -34,15 +34,18 @@ function displayBook(book) { //Add book card to library
     bookCard.classList.add('book')
     bookCard.id = book.id;
 
-
+    //separate container to manage overflow with scroll
+    const bookInfo = document.createElement('div');
+    bookInfo.classList.add('bookInfo');
     // add information and buttons
-    bookCard.appendChild(createInfoContainerElement('title', 'Title:', book.title));
-    bookCard.appendChild(createInfoContainerElement('author', 'Author:', book.author));
-    bookCard.appendChild(createInfoContainerElement('pages', 'Number of pages:', book.pages));
+    bookInfo.appendChild(createInfoContainerElement('title', 'Title:', book.title));
+    bookInfo.appendChild(createInfoContainerElement('author', 'Author:', book.author));
+    bookInfo.appendChild(createInfoContainerElement('pages', 'Number of pages:', book.pages));
     
     const completed = book.read ? 'Yes' : 'No';
-    bookCard.appendChild(createInfoContainerElement('read', 'Completed:', completed));
+    bookInfo.appendChild(createInfoContainerElement('read', 'Completed:', completed));
 
+    bookCard.appendChild(bookInfo);
     bookCard.appendChild(createButtonContainerElement());
 
     // put into html
@@ -214,8 +217,6 @@ function onLoad() {
     
     //hide save button till implemented
     document.querySelector('#save').hidden = true;
-
-    showAddModal();
 }
 
 function yearRange() {

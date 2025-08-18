@@ -125,6 +125,17 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.library .book .bookInfo {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--small-gap);
+}
 #modal button,
 .library .book button {
     width: 45%;
