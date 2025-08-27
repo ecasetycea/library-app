@@ -87,6 +87,9 @@ body {
     background-color: var(--color-background-shadow);
     border-color: var(--color-background-shadow);
 }
+.header #save {
+	display: none;
+}
 
 /*==============*\
 | LIBRARY LAYOUT |
