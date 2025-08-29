@@ -17,6 +17,10 @@ project, contributions are not accepted and PRs won't be merged.
 and no server-side processing.
 - File parsing to restore your library in another machine.
 
+## Mishaps(?):
+- For some reason github cannot deploy the latest change making the save button
+invisible. Will fix it when I have more time available.
+
 ## Screenshots
 ![the library app on a large window](library-app-1.png)
 ![the library app on a small window](library-app-2.png)
